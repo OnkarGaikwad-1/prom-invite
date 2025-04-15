@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prom Surprise</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: black;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Courier New', Courier, monospace;
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    #startBtn {
+      padding: 1rem 2rem;
+      font-size: 1.5rem;
+      background-color: black;
+      color: white;
+      border: 2px solid white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .blast {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, #ff4081, transparent, #00ffff, transparent, #ffff00);
+      border-radius: 50%;
+      opacity: 0;
+      transform: scale(0);
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+      transition: all 0.8s ease-out;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .showBlast {
+      opacity: 1;
+      transform: scale(10);
+    }
+
+    #message {
+      margin-top: 2rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .typewriter {
+      font-size: 2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+      width: 0;
+      animation: typing 4s steps(40) forwards;
+    }
+
+    .signature {
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      color: #ff4081;
+      text-shadow: 0 0 10px #ff4081;
+      opacity: 0;
+      animation: fadeIn 2s ease forwards;
+      animation-delay: 4s;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1 }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="startBtn">Click here</button>
+    <div class="blast" id="blast"></div>
+    <div id="message" class="hidden">
+      <p class="typewriter">Will you please be my prom partner?</p>
+      <p class="signature">– Onkar</p>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById("startBtn");
+    const blast = document.getElementById("blast");
+    const message = document.getElementById("message");
+
+    btn.onclick = () => {
+      blast.classList.add("showBlast");
+      btn.remove();
+      setTimeout(() => {
+        blast.classList.remove("showBlast");
+        message.classList.remove("hidden");
+      }, 1000);
+    };
+  </script>
+</body>
+</html>
